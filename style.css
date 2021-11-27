@@ -1,0 +1,23 @@
+body {
+	font-family: verdana;
+}
+
+.floated-quote {
+	float: left;
+	font-size: 2em;
+	padding: .3em .5em .3em 0;
+}
+
+.navbar ul {
+	display: flex;
+	flex-wrap: wrap;
+	list-style-type: none;
+	font-size: 2em;
+	margin: .4rem -.2rem;
+	justify-content: end;
+}
+
+.navbar li {
+	padding-right: .5em;
+	background-color: blue;
+}
