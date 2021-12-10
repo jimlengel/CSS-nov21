@@ -1,0 +1,64 @@
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function computeFV() {
+            myPV = parseFloat(document.getElementById("ipv").value);
+            myRate = parseFloat(document.getElementById("irate").value);
+                if (document.getElementById("year10").checked) { myYear = 10; }
+                else if (document.getElementById("year15").checked) { myYear = 15; }
+                else { myYear = 30; }
+                if (document.getElementById("imember").checked) { myRate -= .005; }
+            monthly_pay = (myPV * (myRate/12.0))/(1-Math.pow((1+(myRate/12)),(-1*(12*myYear))))
+
+            console.log('monthly payment:' + monthly_pay);
+
+            document.getElementById("ifv").value = monthly_pay.toFixed(2);
+
+            affordable = document.getElementById('affordable').value;
+
+            if (affordable > monthly_pay) {
+              console.log('affordable');
+                document.getElementById("formbox").style.backgroundColor = "green";
+            } else {
+              console.log('not affordable');
+                document.getElementById("formbox").style.backgroundColor = "red";
+            }
+
+        }
+
+
+    </script>
+
+<body>
+<div id="formbox">
+  <form name="fvForm">
+   Monthly Payment Calculator
+   <br />
+   <br />
+   Enter loan:<input name="pv" id="ipv" required="required" type="text" /><br /><br />
+        Select rate:<select name="rate" id="irate">
+            <option value=".03">3.0%</option>
+            <option value=".035">3.5%</option>
+            <option value=".04">4.0%</option>
+            <option value=".045">4.5%</option>
+            <option value=".05">5%</option>
+            <option value=".055">5.5%</option>
+            <option value=".06">6.0^</option>
+
+              </select><br /><br />
+        Select term:<br />
+    <input checked="checked" name="year" id="year10" type="radio" value="10" />10-year<br />
+        <input name="year" id="year15" type="radio" value="15" />15-year<br />
+        <input name="year" id="year30" type="radio" value="30" />30-year<br /><br /><br />
+        <input name="member" type="checkbox" id="imember" />Veteran rate reduces 0.5%<br /><br />
+    Enter affordable payment: $<input type="text" id="affordable"><br /><br />
+    <input type="button" value="Compute Payment" name="btnComputeID" onclick="computeFV()" /><br /><br />
+
+    Monthly payment: $<input name="fv" id="ifv" required="required" type="text" /><br /><br />
+
+    </form>
+</div>
+</body>
+
+</html>
